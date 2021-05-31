@@ -11,8 +11,26 @@
 
   <form action="">
     <input 
+      placeholder="Descrição do alarme"
+      type="text"
+    />
+    <select name="alarms" id="alarmType">
+      <option value="Alto">Alto</option>
+      <option value="Médio">Médio</option>
+      <option value="Baixo">Baixo</option>
+    </select>
+    <select name="alarms" id="alarmType">
+      <option value="Option1">Option 1</option>
+      <option value="Option2">Option 2</option>
+    </select>
+    <input 
       placeholder="Nome do Alarme"
-      type="text">
+      type="date"
+    />
+
+    <button className="button" type="submit">Enviar</button>
   </form>
+
+  <button onclick="window.location.href='../Home/index.html'">Voltar</button>
 </body>
 </html>

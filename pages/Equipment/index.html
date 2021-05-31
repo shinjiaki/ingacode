@@ -1,12 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Equipment</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Equipment</title>
 </head>
 <body>
-    <h1>Equipment</h1>
+  <h1>Equipment</h1>
+
+  <form action="">
+    <input 
+      placeholder="Nome do equipamento"
+      type="text"
+    />
+    <input 
+      placeholder="Número de série"
+      type="number"
+    />
+    <select name="alarms" id="alarmType">
+      <option value="Tensao">Tensão</option>
+      <option value="Corrente">Corrente</option>
+      <option value="Oleo">Óleo</option>
+    </select>
+    <input 
+      placeholder="Nome do Alarme"
+      type="date"
+    />
+
+    <button className="button" type="submit">Enviar</button>
+  </form>
+
+  <button onclick="window.location.href='../Home/index.html'">Voltar</button>
 </body>
 </html>
