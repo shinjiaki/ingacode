@@ -13,24 +13,38 @@
     <input 
       placeholder="Descrição do alarme"
       type="text"
+      id="alarmDescription"
     />
     <select name="alarms" id="alarmType">
       <option value="Alto">Alto</option>
       <option value="Médio">Médio</option>
       <option value="Baixo">Baixo</option>
     </select>
-    <select name="alarms" id="alarmType">
+    <select name="alarms" id="alarmRelated">
       <option value="Option1">Option 1</option>
       <option value="Option2">Option 2</option>
     </select>
-    <input 
-      placeholder="Nome do Alarme"
+    <input
       type="date"
+      id="alarmDate"
     />
 
-    <button className="button" type="submit">Enviar</button>
+    <button className="button" id='btnAlarmEnviar' type="submit">Enviar</button>
   </form>
-
   <button onclick="window.location.href='../Home/index.html'">Voltar</button>
+
+  <h1>Alarmes</h1>
+
+  <table id="alarm-table-register">
+    <thead>
+      <th>Nome</th>
+      <th>Tipo</th>
+      <th>Relacionado</th>
+      <th>Data</th>
+    </thead>
+    <tbody id="alarm-tbody-register"></tbody>
+  </table>
+
+  <script src="../../database/dbAlarms.js"></script>
 </body>
 </html>

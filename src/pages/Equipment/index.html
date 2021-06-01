@@ -13,24 +13,40 @@
     <input 
       placeholder="Nome do equipamento"
       type="text"
+      id="equipmentName"
     />
     <input 
       placeholder="Número de série"
-      type="number"
+      type="text"
+      id="equipmentNumber"
     />
-    <select name="alarms" id="alarmType">
-      <option value="Tensao">Tensão</option>
+    <select name="alarms" id="equipmentType">
+      <option value="Tensão">Tensão</option>
       <option value="Corrente">Corrente</option>
-      <option value="Oleo">Óleo</option>
+      <option value="Óleo">Óleo</option>
     </select>
     <input 
-      placeholder="Nome do Alarme"
       type="date"
+      id="equipmentDate"
     />
 
-    <button className="button" type="submit">Enviar</button>
+    <button className="button" id='btnEquipmentEnviar' type="submit">Enviar</button>
   </form>
 
   <button onclick="window.location.href='../Home/index.html'">Voltar</button>
+
+  <h1>Equipamentos</h1>
+
+  <table id="equipment-table-register">
+    <thead>
+      <th>Nome</th>
+      <th>Serie</th>
+      <th>Tipo</th>
+      <th>Data</th>
+    </thead>
+    <tbody id="equipment-tbody-register"></tbody>
+  </table>
+
+  <script src="../../database/dbEquipment.js"></script>
 </body>
 </html>
