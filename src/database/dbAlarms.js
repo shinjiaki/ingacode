@@ -13,6 +13,7 @@ function carregado() {
 }
 
 function salvar() {
+  const alarmId = document.getElementById('alarmId').value;
   const alarmDescription = document.getElementById('alarmDescription').value;
   const alarmType = document.getElementById('alarmType').value;
   const alarmRelated = document.getElementById('alarmRelated').value;
@@ -20,8 +21,13 @@ function salvar() {
   const formatedAlarmDate = (`${alarmDate[2]}-${alarmDate[1]}-${alarmDate[0]}`);
 
   db.transaction(function(tx) {
+    if (alarmId) {
+      tx.executeSql('UPDATE dbAlarms SET description=?, type=?, related=?, date=? WHERE id=?',
+      [alarmDescription, alarmType, alarmRelated, formatedAlarmDate, alarmId]);
+    } else {
     tx.executeSql('INSERT INTO dbAlarms (description, type, related, date) VALUES(?,?,?,?)',
-    [alarmDescription, alarmType, alarmRelated, formatedAlarmDate])
+    [alarmDescription, alarmType, alarmRelated, formatedAlarmDate]);
+    }
   });
 
   mostrar();
@@ -40,6 +46,8 @@ function mostrar() {
         tr += '<td>' + rows[i].type +'</td>';
         tr += '<td>' + rows[i].related +'</td>';
         tr += '<td>' + rows[i].date +'</td>';
+        tr += '<td><button onClick="atualizar(' + rows[i].id + ')" class="button">Edit</button></td>';
+        tr += '<td><button onClick="" class="button">Delete</button></td>';
         tr += '</tr>';
       }
       
@@ -61,6 +69,29 @@ function relatedEquipmentOptions() {
       }
       
       alarmRelated.innerHTML = equipmentOptions;
+    });
+  });
+}
+
+function atualizar(rowId) {
+  const id = document.getElementById('dbId');
+  const description = document.getElementById('alarmDescription');
+  const type = document.getElementById('alarmType');
+  const related = document.getElementById('alarmRelated');
+  const date = document.getElementById('alarmDate');
+
+  id.value = rowId;
+
+  db.transaction(function(tx) {
+    tx.executeSql('SELECT * FROM dbAlarms WHERE id=?', [rowId], function(tx, resultado) {
+      const rows = resultado.rows[0];
+      const parsedRowsDate = rows.date.split('-');
+      const formatedRowsDate = (`${parsedRowsDate[2]}-${parsedRowsDate[1]}-${parsedRowsDate[0]}`);
+
+      description.value = rows.description;
+      type.value = rows.type;
+      related.value = rows.related;
+      date.value = formatedRowsDate;
     });
   });
 }

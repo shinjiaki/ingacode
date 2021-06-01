@@ -12,6 +12,7 @@ function carregado() {
 }
 
 function salvar() {
+  const equipmentId = document.getElementById('equipmentId').value;
   const equipmentName = document.getElementById('equipmentName').value;
   const equipmentNumber = document.getElementById('equipmentNumber').value;
   const equipmentType = document.getElementById('equipmentType').value;
@@ -19,8 +20,13 @@ function salvar() {
   const formatedEquipmentDate = (`${equipmentDate[2]}-${equipmentDate[1]}-${equipmentDate[0]}`);
 
   db.transaction(function(tx) {
+    if (equipmentId) {
+      tx.executeSql('UPDATE dbEquipment SET nome=?, numero=?, tipo=?, data=? WHERE id=?',
+      [equipmentName, equipmentNumber, equipmentType, formatedEquipmentDate, equipmentId]);
+    } else {
     tx.executeSql('INSERT INTO dbEquipment (nome, numero, tipo, data) VALUES(?,?,?,?)',
     [equipmentName, equipmentNumber, equipmentType, formatedEquipmentDate])
+    }
   });
 
   mostrar();
@@ -39,10 +45,35 @@ function mostrar() {
         tr += '<td>' + rows[i].numero +'</td>';
         tr += '<td>' + rows[i].tipo +'</td>';
         tr += '<td>' + rows[i].data +'</td>';
+        tr += '<td><button onClick="atualizar(' + rows[i].id + ')" class="button">Edit</button></td>';
+        tr += '<td><button onClick="" class="button">Delete</button></td>';
         tr += '</tr>';
       }
       
       equipmentTable.innerHTML = tr;
+    });
+  });
+}
+
+function atualizar(rowId) {
+  const id = document.getElementById('equipmentId');
+  const name = document.getElementById('equipmentName');
+  const number = document.getElementById('equipmentNumber');
+  const type = document.getElementById('equipmentType');
+  const date = document.getElementById('equipmentDate');
+
+  id.value = rowId;
+
+  db.transaction(function(tx) {
+    tx.executeSql('SELECT * FROM dbEquipment WHERE id=?', [rowId], function(tx, resultado) {
+      const rows = resultado.rows[0];
+      const parsedRowsDate = rows.data.split('-');
+      const formatedRowsDate = (`${parsedRowsDate[2]}-${parsedRowsDate[1]}-${parsedRowsDate[0]}`);
+
+      name.value = rows.nome;
+      number.value = rows.numero;
+      type.value = rows.tipo;
+      date.value = formatedRowsDate;
     });
   });
 }
