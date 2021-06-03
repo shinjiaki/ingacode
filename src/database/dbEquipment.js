@@ -46,7 +46,7 @@ function mostrar() {
         tr += '<td>' + rows[i].tipo +'</td>';
         tr += '<td>' + rows[i].data +'</td>';
         tr += '<td><button onClick="atualizar(' + rows[i].id + ')" class="button">Edit</button></td>';
-        tr += '<td><button onClick="" class="button">Delete</button></td>';
+        tr += '<td><button onClick="deletar(' + rows[i].id + ')" class="button">Delete</button></td>';
         tr += '</tr>';
       }
       
@@ -76,4 +76,12 @@ function atualizar(rowId) {
       date.value = formatedRowsDate;
     });
   });
+}
+
+function deletar(rowId) {
+  db.transaction(function(tx) {
+    tx.executeSql('DELETE FROM dbEquipment WHERE id=?', [rowId]);
+  });
+
+  mostrar();
 }

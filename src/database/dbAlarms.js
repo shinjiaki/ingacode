@@ -47,7 +47,7 @@ function mostrar() {
         tr += '<td>' + rows[i].related +'</td>';
         tr += '<td>' + rows[i].date +'</td>';
         tr += '<td><button onClick="atualizar(' + rows[i].id + ')" class="button">Edit</button></td>';
-        tr += '<td><button onClick="" class="button">Delete</button></td>';
+        tr += '<td><button onClick="deletar(' + rows[i].id + ')" class="button">Delete</button></td>';
         tr += '</tr>';
       }
       
@@ -74,7 +74,7 @@ function relatedEquipmentOptions() {
 }
 
 function atualizar(rowId) {
-  const id = document.getElementById('dbId');
+  const id = document.getElementById('alarmId');
   const description = document.getElementById('alarmDescription');
   const type = document.getElementById('alarmType');
   const related = document.getElementById('alarmRelated');
@@ -94,4 +94,13 @@ function atualizar(rowId) {
       date.value = formatedRowsDate;
     });
   });
+}
+
+function deletar(rowId) {
+  db.transaction(function(tx) {
+    tx.executeSql('DELETE FROM dbAlarms WHERE id=?', [rowId]);
+  });
+
+  mostrar();
+  location.reload();
 }
