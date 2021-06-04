@@ -2,9 +2,9 @@ window.addEventListener('load', carregado);
 
 const db = openDatabase("myDB", "1.0", "IngaCode Database", 2 * 1024 * 1024);
 
-  db.transaction(function(tx) {
-    tx.executeSql("CREATE TABLE IF NOT EXISTS dbAlarms ( id INTEGER PRIMARY KEY,description TEXT, type TEXT, related TEXT, date TEXT)");
-  });
+db.transaction(function(tx) {
+  tx.executeSql("CREATE TABLE IF NOT EXISTS dbAlarms ( id INTEGER PRIMARY KEY,description TEXT, type TEXT, related TEXT, date TEXT)");
+});
 
 function carregado() {
   document.getElementById('btnAlarmEnviar').addEventListener('click', salvar);
@@ -79,6 +79,7 @@ function atualizar(rowId) {
   const type = document.getElementById('alarmType');
   const related = document.getElementById('alarmRelated');
   const date = document.getElementById('alarmDate');
+  const btnAtualizar = document.getElementById('btnAlarmEnviar');
 
   id.value = rowId;
 
@@ -94,6 +95,9 @@ function atualizar(rowId) {
       date.value = formatedRowsDate;
     });
   });
+
+  btnAtualizar.innerHTML = 'Atualizar';
+  window.scrollTo(0,0); //In case the page is too long, go to the top.
 }
 
 function deletar(rowId) {

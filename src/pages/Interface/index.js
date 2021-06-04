@@ -1,0 +1,1 @@
+const db = openDatabase("myDB", "1.0", "IngaCode Database", 2 * 1024 * 1024);

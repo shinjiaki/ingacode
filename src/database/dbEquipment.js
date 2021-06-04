@@ -2,12 +2,14 @@ window.addEventListener('load', carregado);
 
 const db = openDatabase("myDB", "1.0", "IngaCode Database", 2 * 1024 * 1024);
 
-  db.transaction(function(tx) {
-    tx.executeSql("CREATE TABLE IF NOT EXISTS dbEquipment ( id INTEGER PRIMARY KEY,nome TEXT, numero TEXT, tipo TEXT, data TEXT)");
-  });
+db.transaction(function(tx) {
+  tx.executeSql("CREATE TABLE IF NOT EXISTS dbEquipment ( id INTEGER PRIMARY KEY,nome TEXT, numero TEXT, tipo TEXT, data TEXT)");
+});
 
 function carregado() {
-  document.getElementById('btnEquipmentEnviar').addEventListener('click', salvar);
+  const btnEquipmentEnviar = document.getElementById('btnEquipmentEnviar');
+  
+  btnEquipmentEnviar.addEventListener('click', salvar);
   mostrar();
 }
 
@@ -61,6 +63,7 @@ function atualizar(rowId) {
   const number = document.getElementById('equipmentNumber');
   const type = document.getElementById('equipmentType');
   const date = document.getElementById('equipmentDate');
+  const btnAtualizar = document.getElementById('btnEquipmentEnviar');
 
   id.value = rowId;
 
@@ -76,6 +79,10 @@ function atualizar(rowId) {
       date.value = formatedRowsDate;
     });
   });
+
+  btnAtualizar.innerHTML = 'Atualizar';
+  window.scrollTo(0,0); //In case the page is too long, go to the top.
+
 }
 
 function deletar(rowId) {
@@ -84,4 +91,5 @@ function deletar(rowId) {
   });
 
   mostrar();
+  location.reload();
 }
