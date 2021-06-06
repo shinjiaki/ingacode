@@ -3,7 +3,7 @@ window.addEventListener('load', carregado);
 const db = openDatabase("myDB", "1.0", "IngaCode Database", 2 * 1024 * 1024);
 
 db.transaction(function(tx) {
-  tx.executeSql("CREATE TABLE IF NOT EXISTS dbAlarms ( id INTEGER PRIMARY KEY,description TEXT, type TEXT, related TEXT, date TEXT)");
+  tx.executeSql("CREATE TABLE IF NOT EXISTS dbAlarms ( id INTEGER PRIMARY KEY, name TEXT, description TEXT, type TEXT, related TEXT, date TEXT)");
 });
 
 function carregado() {
@@ -14,6 +14,7 @@ function carregado() {
 
 function salvar() {
   const alarmId = document.getElementById('alarmId').value;
+  const alarmName = document.getElementById('alarmName').value;
   const alarmDescription = document.getElementById('alarmDescription').value;
   const alarmType = document.getElementById('alarmType').value;
   const alarmRelated = document.getElementById('alarmRelated').value;
@@ -22,11 +23,11 @@ function salvar() {
 
   db.transaction(function(tx) {
     if (alarmId) {
-      tx.executeSql('UPDATE dbAlarms SET description=?, type=?, related=?, date=? WHERE id=?',
-      [alarmDescription, alarmType, alarmRelated, formatedAlarmDate, alarmId]);
+      tx.executeSql('UPDATE dbAlarms SET name =?, description=?, type=?, related=?, date=? WHERE id=?',
+      [alarmName, alarmDescription, alarmType, alarmRelated, formatedAlarmDate, alarmId]);
     } else {
-    tx.executeSql('INSERT INTO dbAlarms (description, type, related, date) VALUES(?,?,?,?)',
-    [alarmDescription, alarmType, alarmRelated, formatedAlarmDate]);
+    tx.executeSql('INSERT INTO dbAlarms (name, description, type, related, date) VALUES(?,?,?,?,?)',
+    [alarmName, alarmDescription, alarmType, alarmRelated, formatedAlarmDate]);
     }
   });
 
@@ -42,6 +43,7 @@ function mostrar() {
       let tr = '';
       for (let i = 0; i < rows.length; i++) {
         tr += '<tr>';
+        tr += '<td>' + rows[i].name +'</td>';
         tr += '<td>' + rows[i].description +'</td>';
         tr += '<td>' + rows[i].type +'</td>';
         tr += '<td>' + rows[i].related +'</td>';
@@ -75,6 +77,7 @@ function relatedEquipmentOptions() {
 
 function atualizar(rowId) {
   const id = document.getElementById('alarmId');
+  const name = document.getElementById('alarmName');
   const description = document.getElementById('alarmDescription');
   const type = document.getElementById('alarmType');
   const related = document.getElementById('alarmRelated');
@@ -89,6 +92,7 @@ function atualizar(rowId) {
       const parsedRowsDate = rows.date.split('-');
       const formatedRowsDate = (`${parsedRowsDate[2]}-${parsedRowsDate[1]}-${parsedRowsDate[0]}`);
 
+      name.value = rows.name;
       description.value = rows.description;
       type.value = rows.type;
       related.value = rows.related;
