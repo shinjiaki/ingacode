@@ -3,7 +3,7 @@ window.addEventListener('load', carregado);
 const db = openDatabase("myDB", "1.0", "IngaCode Database", 2 * 1024 * 1024);
 
 db.transaction(function(tx) {
-  tx.executeSql("CREATE TABLE IF NOT EXISTS dbAlarms ( id INTEGER PRIMARY KEY, name TEXT, description TEXT, type TEXT, related TEXT, date TEXT)");
+  tx.executeSql("CREATE TABLE IF NOT EXISTS dbAlarms ( id INTEGER PRIMARY KEY, name TEXT, description TEXT, type TEXT, related TEXT, date TEXT, dateIn TEXT, dateOut TEXT, elapsed TEXT, status TEXT, occurrences TEXT)");
 });
 
 function carregado() {
@@ -20,14 +20,20 @@ function salvar() {
   const alarmRelated = document.getElementById('alarmRelated').value;
   const alarmDate = document.getElementById('alarmDate').value.split('-');
   const formatedAlarmDate = (`${alarmDate[2]}-${alarmDate[1]}-${alarmDate[0]}`);
+  const alarmDateIn = '01/01';
+  const alarmDateOut = '31/12';
+  const alarmElapsedTime = '00:00:00';
+  const alarmStatus = 'off';
+  const alarmOccurrences = '0';
+
 
   db.transaction(function(tx) {
     if (alarmId) {
       tx.executeSql('UPDATE dbAlarms SET name =?, description=?, type=?, related=?, date=? WHERE id=?',
       [alarmName, alarmDescription, alarmType, alarmRelated, formatedAlarmDate, alarmId]);
     } else {
-    tx.executeSql('INSERT INTO dbAlarms (name, description, type, related, date) VALUES(?,?,?,?,?)',
-    [alarmName, alarmDescription, alarmType, alarmRelated, formatedAlarmDate]);
+    tx.executeSql('INSERT INTO dbAlarms (name, description, type, related, date, dateIn, dateOut, elapsed, status, occurrences) VALUES(?,?,?,?,?,?,?,?,?,?)',
+    [alarmName, alarmDescription, alarmType, alarmRelated, formatedAlarmDate, alarmDateIn, alarmDateOut, alarmElapsedTime, alarmStatus, alarmOccurrences]);
     }
   });
 
