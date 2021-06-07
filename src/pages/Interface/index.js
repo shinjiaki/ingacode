@@ -38,7 +38,7 @@ function mostrarAlarmes() {
             
             <div class="content">
             <p>${rowsAlarms[i].description}</p>
-            <p>Classificação: ${rowsAlarms[i].type}</p>
+            <p class="alarmsDescription">Classificação: ${rowsAlarms[i].type}</p>
             <p>Data de cadastro: ${rowsAlarms[i].date}</p>
             <h2>Equipamento ${rowsEquip[equipIndex].nome}</h2>
             <p>Número de série: ${rowsEquip[equipIndex].numero}</p>
@@ -173,3 +173,19 @@ function collapsibleHandle() {
 // btnOnOff[0].addEventListener("click", () => {
 //   console.log('clickou')
 // });
+
+function searchFilter() {
+  const input = document.getElementById('myInput');
+  const filter = input.value.toUpperCase();
+  const alarms = document.getElementsByClassName('alarmAndOnOff')
+  const description = document.getElementsByClassName('alarmsDescription')
+
+  for (i = 0; i < alarms.length; i++) {
+    const txtValue = description[i].textContent || description[i].innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      alarms[i].style.display = "";
+    } else {
+      alarms[i].style.display = "none";
+    }
+  }
+}
