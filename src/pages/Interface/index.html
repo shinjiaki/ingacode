@@ -5,20 +5,36 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Interface</title>
+
+  <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
   <h1>Interface</h1>
 
   <button onclick="window.location.href='../Home/index.html'">Voltar</button>
 
-  <section style="background-color: aquamarine;">
-    <div>
-      <label for="hi">Nome</label>
-      <p>hi hi</p>
-
+  <section class="displayAlarms" id="displayAlarms">
+    <button type="button" class="collapsible">
+      <img src="../../assets/down-arrow.png" alt="down-arrow" class="downArrow">
+      Abrir
+      <span id="dateIn">Entrada:</span>
+      <span>Saida:</span>
+      <span>Tempo Decorrido:</span>
+      <div>
+        <img src="../../assets/on-off.png" alt="on-off" class="onOff">
+      </div>
+      
+    </button>
+    <div class="content">
+      <p>Alarm Description</p>
+      <p>Número de série: BB102</p>
+      <p>Classificação: Alto</p>
+      <p>Data de cadastro: 10/10</p>
+      <h2>Equipamento VR16C</h2>
+      <p>Número de série: XXXXX</p>
+      <p>Tipo: Corrente</p>
+      <p>Data de cadastro: 20/10</p>
     </div>
-
-    <h1>HI</h1>
   </section>
 
 
