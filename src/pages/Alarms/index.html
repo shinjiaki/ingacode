@@ -15,11 +15,13 @@
       placeholder="Nome do Alarme"
       type="text"
       id="alarmName"
+      onkeyup="enableDisable()"
     />
     <input 
       placeholder="Descrição do alarme"
       type="text"
       id="alarmDescription"
+      onkeyup="enableDisable()"
     />
     <select name="alarms" id="alarmType">
       <option value="Alto">Alto</option>
@@ -33,6 +35,7 @@
     <input
       type="date"
       id="alarmDate"
+      onkeyup="enableDisable()"
     />
 
     <button className="button" id='btnAlarmEnviar' type="submit">Enviar</button>

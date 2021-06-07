@@ -15,11 +15,13 @@
       placeholder="Nome do equipamento"
       type="text"
       id="equipmentName"
+      onkeyup="enableDisable()"
     />
     <input 
       placeholder="Número de série"
       type="text"
       id="equipmentNumber"
+      onkeyup="enableDisable()"
     />
     <select name="alarms" id="equipmentType">
       <option value="Tensão">Tensão</option>
@@ -29,6 +31,7 @@
     <input 
       type="date"
       id="equipmentDate"
+      onkeyup="enableDisable()"
     />
 
     <button className="button" id='btnEquipmentEnviar' type="submit">Enviar</button>

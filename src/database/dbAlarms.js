@@ -20,11 +20,12 @@ function salvar() {
   const alarmRelated = document.getElementById('alarmRelated').value;
   const alarmDate = document.getElementById('alarmDate').value.split('-');
   const formatedAlarmDate = (`${alarmDate[2]}-${alarmDate[1]}-${alarmDate[0]}`);
-  const alarmDateIn = '01/01';
-  const alarmDateOut = '31/12';
+  const alarmDateIn = 'dd/mm/aaaa';
+  const alarmDateOut = 'dd/mm/aaaa';
   const alarmElapsedTime = '00:00:00';
   const alarmStatus = 'off';
   const alarmOccurrences = '0';
+
 
 
   db.transaction(function(tx) {
@@ -118,3 +119,17 @@ function deletar(rowId) {
   mostrar();
   location.reload();
 }
+
+enableDisable();
+
+function enableDisable() {
+  const btnEnviar = document.getElementById("btnAlarmEnviar");
+  const alarmName = document.getElementById('alarmName').value;
+  const alarmDescription = document.getElementById('alarmDescription').value;
+  const alarmDate = document.getElementById('alarmDate').value;
+  if (alarmName.trim() != "" && alarmDescription.trim() != "" && alarmDate.trim() != "") {
+    btnEnviar.disabled = false;
+  } else {
+    btnEnviar.disabled = true;
+  }
+};

@@ -93,3 +93,17 @@ function deletar(rowId) {
   mostrar();
   location.reload();
 }
+
+enableDisable();
+
+function enableDisable() {
+  const btnEquipmentEnviar = document.getElementById('btnEquipmentEnviar');
+  const equipmentName = document.getElementById('equipmentName').value;
+  const equipmentNumber = document.getElementById('equipmentNumber').value;
+  const equipmentDate = document.getElementById('equipmentDate').value;
+  if (equipmentName.trim() != "" && equipmentNumber.trim() != "" && equipmentDate.trim() != "") {
+    btnEquipmentEnviar.disabled = false;
+  } else {
+    btnEquipmentEnviar.disabled = true;
+  }
+};

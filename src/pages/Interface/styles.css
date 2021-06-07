@@ -3,6 +3,11 @@
   --rotation: -90deg;
 }
 
+.alarmAndOnOff {
+  display: inline;
+}
+
+
 .collapsible {
   background-color: rgb(81, 61, 194);
   color: white;
@@ -13,7 +18,7 @@
   text-align: left;
   outline: none;
   font-size: 15px;
-  margin-top: 10px;
+  margin-top: 0px;
   display: flex;
 }
 
@@ -41,7 +46,7 @@
   margin-left: 20px;
 }
 
-#dateIn {
+.collapsible .dateIn {
   margin-left: 200px;
 }
 
@@ -51,6 +56,7 @@
   overflow: hidden;
   transition: max-height 0.2s ease-out;
   background-color: #f1f1f1;
+  margin-bottom: 20px;
 }
 
 .downArrow {
@@ -63,15 +69,18 @@
 
 .onOff {
   height: 20px;
-  margin-left: 100px;
   margin-right: 0px;
   filter: invert(25%) sepia(35%) saturate(2875%) hue-rotate(332deg) brightness(101%) contrast(132%);
+  
 }
 
+.onOff.active {
+  background: transparent;
+  filter: invert(58%) sepia(52%) saturate(3285%) hue-rotate(79deg) brightness(105%) contrast(97%);
+}
 
-.btnTest{
-  background:url('../../assets/on-off.png') no-repeat left center;
-  height: 30px;
-  padding-left:20px;
-  color: #cf1616;
-}    
+/* .btnOnOff{
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}     */
