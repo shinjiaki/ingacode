@@ -64,7 +64,7 @@ function mostrarAlarmes() {
               alarmActived[y] = !(alarmActived[y]);
               
               //send email to abcd@abc.com.br if type is 'Alto'
-              if (rowsAlarms[y].type == 'Alto') {
+              if (rowsAlarms[y].type == 'Alto' && alarmActived[y] == true) {
                 sendEmail()
               }
 
