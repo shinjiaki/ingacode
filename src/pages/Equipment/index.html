@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Equipment</title>
+
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <h1>Equipment</h1>
+
+  <form action="">
+    <input type="hidden" id="equipmentId" value="" />
+    <input 
+      placeholder="Nome do equipamento"
+      type="text"
+      id="equipmentName"
+      onkeyup="enableDisable()"
+    />
+    <input 
+      placeholder="Número de série"
+      type="text"
+      id="equipmentNumber"
+      onkeyup="enableDisable()"
+    />
+    <select name="alarms" id="equipmentType">
+      <option value="Tensão">Tensão</option>
+      <option value="Corrente">Corrente</option>
+      <option value="Óleo">Óleo</option>
+    </select>
+    <input 
+      type="date"
+      id="equipmentDate"
+      onkeyup="enableDisable()"
+    />
+
+    <button className="button" id='btnEquipmentEnviar' type="submit">Enviar</button>
+  </form>
+
+  <button onclick="window.location.href='../Home/index.html'">Voltar</button>
+
+  <h1>Equipamentos</h1>
+
+  <table id="equipment-table-register">
+    <thead>
+      <th>Nome</th>
+      <th>Serie</th>
+      <th>Tipo</th>
+      <th>Data</th>
+    </thead>
+    <tbody id="equipment-tbody-register"></tbody>
+  </table>
+
+  <script src="../../database/dbEquipment.js"></script>
+</body>
+</html>

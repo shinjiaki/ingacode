@@ -1,0 +1,99 @@
+/* css */
+:root {
+  --rotation: -90deg;
+}
+
+body {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.headbar {
+  margin-bottom: 50px;
+}
+
+.alarmAndOnOff {
+  display: inline;
+}
+
+
+.collapsible {
+  background-color: rgb(81, 61, 194);
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 1400px;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  margin-top: 0px;
+  display: flex;
+}
+
+.active, .collapsible:hover {
+  background-color: rgb(49, 32, 146);
+}
+
+
+.collapsible:after {
+  color: white;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+/* 
+.active:after {
+  content: "\2212";
+} */
+
+.collapsible.active {
+  --rotation: 0deg;
+}
+
+.collapsible span {
+  margin-left: 20px;
+}
+
+.collapsible .dateIn {
+  margin-left: 200px;
+}
+
+.content {
+  padding: 0 18px;
+  max-height: 0;
+  width: 1400px;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  background-color: #f1f1f1;
+  margin-bottom: 20px;
+}
+
+.downArrow {
+  height: 15px;
+  filter: invert(100);
+  transform: rotate(var(--rotation));
+  transition: all 0.2s ease-out;
+  margin-right: 10px;
+}
+
+.onOff {
+  height: 20px;
+  margin-right: 0px;
+  filter: invert(25%) sepia(35%) saturate(2875%) hue-rotate(332deg) brightness(101%) contrast(132%);
+  
+}
+
+.onOff.active {
+  background: transparent;
+  filter: invert(58%) sepia(52%) saturate(3285%) hue-rotate(79deg) brightness(105%) contrast(97%);
+}
+
+.material-icons {
+  transform: translateY(8px);
+}
+
+/* .btnOnOff{
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}     */

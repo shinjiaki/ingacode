@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alarms</title>
+
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <h1>Alarms</h1>
+
+  <form action="">
+    <input type="hidden" id="alarmId" value="" />
+    <input 
+      placeholder="Nome do Alarme"
+      type="text"
+      id="alarmName"
+      onkeyup="enableDisable()"
+    />
+    <input 
+      placeholder="Descrição do alarme"
+      type="text"
+      id="alarmDescription"
+      onkeyup="enableDisable()"
+    />
+    <select name="alarms" id="alarmType">
+      <option value="Alto">Alto</option>
+      <option value="Médio">Médio</option>
+      <option value="Baixo">Baixo</option>
+    </select>
+    <select name="alarms" id="alarmRelated">
+      <option value="Option1">Option 1</option>
+      <option value="Option2">Option 2</option>
+    </select>
+    <input
+      type="date"
+      id="alarmDate"
+      onkeyup="enableDisable()"
+    />
+
+    <button className="button" id='btnAlarmEnviar' type="submit">Enviar</button>
+  </form>
+  <button onclick="window.location.href='../Home/index.html'">Voltar</button>
+
+  <h1>Alarmes</h1>
+
+  <table id="alarm-table-register">
+    <thead>
+      <th>Nome</th>
+      <th>Tipo</th>
+      <th>Relacionado</th>
+      <th>Data</th>
+    </thead>
+    <tbody id="alarm-tbody-register"></tbody>
+  </table>
+
+  <script src="../../database/dbAlarms.js"></script>
+</body>
+</html>
