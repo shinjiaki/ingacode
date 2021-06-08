@@ -25,6 +25,9 @@ Projeto de avaliação da IngaCode.
 
 - [Notion - Funcionalidades](https://www.notion.so/IngaCode-Tasks-3c1fe0f733994afeadc7ba51668d44d9)
 
+- Caso queira visualizar e/ou remover o banco de dados em tempo real, utilize o banco de dados do próprio navegador:
+[Tutorial Edge](https://docs.microsoft.com/pt-br/microsoft-edge/devtools-guide-chromium/storage/websql)
+
 </div>
 
 <div id="tecnologias">
