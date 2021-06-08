@@ -62,7 +62,12 @@ function mostrarAlarmes() {
           for (let y = 0; y < btnOnOff.length; y++) {
             btnOnOff[y].addEventListener("click", () => {
               alarmActived[y] = !(alarmActived[y]);
-              console.log('clickou')
+              
+              //send email to abcd@abc.com.br if type is 'Alto'
+              if (rowsAlarms[y].type == 'Alto') {
+                sendEmail()
+              }
+
               btnOnOff[y].firstChild.classList.toggle("active");
 
               let hour = 0;
@@ -283,3 +288,17 @@ function upDiv(index) {
   }
 }
 
+function sendEmail() {
+  Email.send({
+    Host: "smtp.gmail.com",
+    Username : "<sender’s email address>",
+    Password : "<email password>",
+    To : 'abcd@abc.com.br',
+    From : "<sender’s email address>",
+    Subject : "<email subject>",
+    Body : "Você ativou um alarme de classificação Alto",
+  })
+  .then(function(message){
+    alert("E-mail enviado com sucesso para abcd@abc.com.br")
+  });
+}
