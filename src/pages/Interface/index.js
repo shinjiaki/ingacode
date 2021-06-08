@@ -25,6 +25,8 @@ function mostrarAlarmes() {
             `
             <div class="alarmAndOnOff">
             <button class="btnOnOff"><img src="../../assets/on-off.png" alt="on-off" class="onOff"></button>
+            <button><span class="material-icons">arrow_drop_up</span></button></button>
+            <button><span class="material-icons">arrow_drop_down</span></button></button>
             <div type="button" class="collapsible">
             <img src="../../assets/down-arrow.png" alt="down-arrow" class="downArrow">
             ${rowsAlarms[i].name}
@@ -37,8 +39,8 @@ function mostrarAlarmes() {
             </div>
             
             <div class="content">
-            <p>${rowsAlarms[i].description}</p>
-            <p class="alarmsDescription">Classificação: ${rowsAlarms[i].type}</p>
+            <p class="alarmsDescription">${rowsAlarms[i].description}</p>
+            <p>Classificação: ${rowsAlarms[i].type}</p>
             <p>Data de cadastro: ${rowsAlarms[i].date}</p>
             <h2>Equipamento ${rowsEquip[equipIndex].nome}</h2>
             <p>Número de série: ${rowsEquip[equipIndex].numero}</p>
@@ -189,3 +191,74 @@ function searchFilter() {
     }
   }
 }
+
+const btnTop3 = document.getElementById('top3');
+
+btnTop3.addEventListener("click", () => {
+  const alarms = document.getElementsByClassName('alarmAndOnOff')
+  const elapsed = document.getElementsByClassName('timer')
+  const arrayAlarmsIndex = [];
+
+  for (let i = 0; i < alarms.length; i++) {
+    const timeSplited = elapsed[i].textContent.split(':');
+    timeSplited[1].trim();
+    timeSplited[3].replace('\n','')
+
+    const hour = parseInt(timeSplited[1].trim());
+    const min = parseInt(timeSplited[2]);
+    const sec = parseInt(timeSplited[3].replace('\n',''));
+
+    const totalTimeSeconds = sec + min*60 + hour*3600;
+
+    arrayAlarmsIndex.push(totalTimeSeconds);
+  }
+
+  let top1 = 0;
+  let top2 = 0;
+  let top3 = 0;
+  for (let i = 0; i < arrayAlarmsIndex.length; i++) {
+    if (arrayAlarmsIndex[i] >= top1) {
+      top1 = arrayAlarmsIndex[i]
+    }    
+  }
+  const top2Array = [];
+  for (let i = 0; i < arrayAlarmsIndex.length; i++) {
+    top2Array.push(arrayAlarmsIndex[i])
+  }
+  top2Array.splice(arrayAlarmsIndex.indexOf(top1), 1);
+  for (let i = 0; i < top2Array.length; i++) {
+    if (top2Array[i] >= top2) {
+      top2 = top2Array[i]
+    }    
+  }
+  const top3Array = [];
+  for (let i = 0; i < top2Array.length; i++) {
+    top3Array.push(top2Array[i])
+  }
+  top3Array.splice(top2Array.indexOf(top2), 1)
+  for (let i = 0; i < top3Array.length; i++) {
+    if (top3Array[i] >= top3) {
+      top3 = top3Array[i]
+    }    
+  }
+
+  const top1Index = arrayAlarmsIndex.indexOf(top1)
+  const top2Index = arrayAlarmsIndex.indexOf(top2)
+  const top3Index = arrayAlarmsIndex.indexOf(top3)
+  
+  if(btnTop3.checked == true) {
+    console.log('checked!')
+    for (i = 0; i < alarms.length; i++) {
+      if (top1Index == i || top2Index == i || top3Index == i) {
+        alarms[i].style.display = "";
+      } else {
+        alarms[i].style.display = "none";
+      }
+    }
+  } else if(btnTop3.checked == false) {
+    for (i = 0; i < alarms.length; i++) {
+      alarms[i].style.display = "";
+    }
+  }
+});
+

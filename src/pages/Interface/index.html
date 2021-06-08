@@ -7,13 +7,23 @@
   <title>Interface</title>
 
   <link rel="stylesheet" href="./styles.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
 </head>
 <body>
   <h1>Interface</h1>
 
-  <button onclick="window.location.href='../Home/index.html'">Voltar</button>
-
-  <input type="text" id="myInput" onkeyup="searchFilter()" placeholder="Descrição do alarme">
+  <div class="headbar">
+    <Label><span class="material-icons">search</span>
+      <input type="text" id="myInput" onkeyup="searchFilter()" placeholder="Descrição do alarme">
+    </Label>
+    
+    <label class="top3"> Top 3
+      <input type="checkbox" id="top3">
+    </label>
+    
+    <button onclick="window.location.href='../Home/index.html'">Voltar</button>
+  </div>
 
   <section class="displayAlarms" id="displayAlarms">
     <button type="button" class="collapsible">

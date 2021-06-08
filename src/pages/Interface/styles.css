@@ -3,6 +3,10 @@
   --rotation: -90deg;
 }
 
+.headbar {
+  margin-bottom: 50px;
+}
+
 .alarmAndOnOff {
   display: inline;
 }
@@ -13,7 +17,7 @@
   color: white;
   cursor: pointer;
   padding: 18px;
-  width: 100%;
+  width: 1400px;
   border: none;
   text-align: left;
   outline: none;
@@ -53,6 +57,7 @@
 .content {
   padding: 0 18px;
   max-height: 0;
+  width: 1400px;
   overflow: hidden;
   transition: max-height 0.2s ease-out;
   background-color: #f1f1f1;
@@ -77,6 +82,10 @@
 .onOff.active {
   background: transparent;
   filter: invert(58%) sepia(52%) saturate(3285%) hue-rotate(79deg) brightness(105%) contrast(97%);
+}
+
+.material-icons {
+  transform: translateY(8px);
 }
 
 /* .btnOnOff{
