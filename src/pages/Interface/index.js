@@ -25,8 +25,8 @@ function mostrarAlarmes() {
             `
             <div class="alarmAndOnOff">
             <button class="btnOnOff"><img src="../../assets/on-off.png" alt="on-off" class="onOff"></button>
-            <button><span class="material-icons">arrow_drop_up</span></button></button>
-            <button><span class="material-icons">arrow_drop_down</span></button></button>
+            <button /*onClick="upDiv(${i})*/"><span class="material-icons">arrow_drop_up</span></button></button>
+            <button /*onClick="downDiv(${i})*/"><span class="material-icons">arrow_drop_down</span></button></button>
             <div type="button" class="collapsible">
             <img src="../../assets/down-arrow.png" alt="down-arrow" class="downArrow">
             ${rowsAlarms[i].name}
@@ -261,4 +261,25 @@ btnTop3.addEventListener("click", () => {
     }
   }
 });
+
+function downDiv(index) {
+  const thisDiv = document.getElementsByClassName('alarmAndOnOff')[index]
+  const nextDiv = thisDiv.nextElementSibling;
+
+  if(nextDiv != null) {
+    thisDiv.remove();
+    nextDiv.append(thisDiv);
+  }
+}
+
+function upDiv(index) {
+  const thisDiv = document.getElementsByClassName('alarmAndOnOff')[index]
+  const previousDiv = thisDiv.previousElementSibling;
+  const previousPreviousDiv = previousElementSibling;
+
+  if(previousDiv != null) {
+    thisDiv.remove();
+    previousPreviousDiv.append(thisDiv);
+  }
+}
 

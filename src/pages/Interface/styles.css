@@ -3,6 +3,10 @@
   --rotation: -90deg;
 }
 
+body {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
 .headbar {
   margin-bottom: 50px;
 }
